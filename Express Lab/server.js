@@ -2,10 +2,9 @@ const express = require('express');
 const items = require('./cart');
 //const getCartItem = items.getCartItem;
 
-
 const app = express();
 console.log (items);
-const port = 3000;
+const port = 4200;
 
 
 //Get the request data as an object
@@ -16,18 +15,17 @@ app.listen(port, () => {
 
 //GET cart items
 app.get( '/cart', (req, res) => {
-    res.status(200, 'OK');
-    res.json(items);
-    
+    res.status(200);
+    res.json(items); 
 })
 
 //GET cart items by ID, status code 200 & **404 when not found**
 app.get( '/cart:id', (req, res) => {
     res.status(200, 'OK');
-    res.json(items);
+    res.json(items.ID);
    
-    if ( !isNaN(id) ) {
-        res.json(items[req.params.id]);
+    if ( !isNaN(ID) ) {
+        res.json(items[req.params.ID]);
     } else {
         res.status(404, 'Not Found');
     }
@@ -35,8 +33,14 @@ app.get( '/cart:id', (req, res) => {
 
 //POST cart items (add to array) and generate random ID, response code 201
 app.post( '/cart', (req, res) => {
-    res.status(201, 'Created');
+    const body = req.body.newItem;
+    items.push(body.newItem);
+
+    res.status(201);
     res.json(items);
+
+    // const random = () => {
+    // return cartItems(Math.floor(Math.random() * 500));
    
     // const ID = new Date().getTime();
     // const newItem = {
@@ -45,15 +49,13 @@ app.post( '/cart', (req, res) => {
     //     price : body.price,
     //     quantity : body.quantity,
     // };
-
-    const body = req.body.newItem;
-    items.push(body);
+    
 });
 
 //PUT cart items by ID, update cart item and response code 200
 app.put( '/cart:id', (req, res) => {
     res.status(200, 'OK');
-    res.json(items);
+    res.json(items.ID);
    
     const id = req.params.id;
     const newItem = req.body.id;
