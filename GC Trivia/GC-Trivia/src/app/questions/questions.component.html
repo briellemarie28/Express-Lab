@@ -1,1 +1,44 @@
-<p>questions works!</p>
+<!-- <ng-content></ng-content>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <ol class="form">
+      <div class="radio-options" *ngFor="let question of questions">
+          <li>{{ option.optionText }}</li>
+
+        <section class="messages">
+          <div *ngIf="isCorrect(option.optionValue) && !!isIncorrect(option.optionValue)">
+            
+          </div>
+          <div *ngIf="isIncorrect(option.optionValue)">
+            
+          </div>
+        </section>
+      </div>
+  
+  </ol>
+</form> -->
+
+
+
+
+
+
+
+ <header>Trivia Game</header>
+
+<div>
+<span> 
+
+    <ul *ngFor = "let question of questions"> 
+        <li>{{ question.questionText}} </li><br>
+      
+        <ul *ngFor = "let option of question.options">
+          <li>{{option.optionText}}</li>
+        </ul>
+      </ul> 
+        <!--<button>Next Question</button> -->
+ </span>
+</div> 
+
+
+
